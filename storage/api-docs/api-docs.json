@@ -1,0 +1,654 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CRM for Developers",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/",
+            "description": "API server"
+        }
+    ],
+    "paths": {
+        "/api/contacts/list": {
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "List of contacts",
+                "operationId": "99393702674f7e3a642a7589ad06bdeb",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/ContactFilter"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/ContactListCollection"
+                    }
+                }
+            }
+        },
+        "/api/contacts/store": {
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Create contact",
+                "operationId": "a582c8064d7cceb258d2bf462c4c8ecd",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/StoreContactRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/contacts/{contactId}": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Get contact by Id",
+                "operationId": "bd9d3671624c0eb818e261322a469e3d",
+                "parameters": [
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/ContactGetResource"
+                    }
+                }
+            }
+        },
+        "/api/contacts/{contactId}/phones/{phoneId}": {
+            "put": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Update contact`s phone",
+                "operationId": "bdbc950ef8a79862cfb69e9d5e2efc39",
+                "parameters": [
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "phoneId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/StoreContactPhoneRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/PhoneCollection"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Delete contact`s phone",
+                "operationId": "3c7c3b00f44f2fa618716c5c4d176468",
+                "parameters": [
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "phoneId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/PhoneCollection"
+                    }
+                }
+            }
+        },
+        "/api/contacts/{contactId}/phones": {
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Create contact`s phone",
+                "operationId": "7329ceb86ca29198f689ec648e7efc8c",
+                "parameters": [
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/StoreContactPhoneRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/PhoneCollection"
+                    }
+                }
+            }
+        },
+        "/api/contacts/{contactId}/emails/{emailId}": {
+            "put": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Update contact`s email",
+                "operationId": "05fd71e2633362450164a48cbabbc0c3",
+                "parameters": [
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "emailId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/StoreContactEmailRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/EmailCollection"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Delete contact`s email",
+                "operationId": "8b65b3ffadb80e18b7c175ccb607cf3f",
+                "parameters": [
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "emailId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/EmailCollection"
+                    }
+                }
+            }
+        },
+        "/api/contacts/{contactId}/emails": {
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Create contact`s email",
+                "operationId": "c23333f8905a39c65f76310c7341c406",
+                "parameters": [
+                    {
+                        "name": "contactId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/StoreContactEmailRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/EmailCollection"
+                    }
+                }
+            }
+        },
+        "/api/residentials/{residentialId}": {
+            "get": {
+                "tags": [
+                    "Residentials"
+                ],
+                "summary": "Get residential by Id",
+                "operationId": "ebb9748decc18b2156f3f132ab27c1d7",
+                "parameters": [
+                    {
+                        "name": "residentialId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/ResidentialGetResource"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ContactFilter": {
+                "description": "Filters & sorting for contacts list",
+                "properties": {
+                    "filters": {
+                        "properties": {
+                            "source": {
+                                "type": "string",
+                                "example": "stirng"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "sort": {
+                        "properties": {
+                            "field": {
+                                "type": "string",
+                                "example": "stirng"
+                            },
+                            "option": {
+                                "type": "string",
+                                "example": "stirng"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreContactEmailRequest": {
+                "description": "Request DTO to update email",
+                "properties": {
+                    "email": {
+                        "type": "stryng",
+                        "example": "example@email.com"
+                    },
+                    "default": {
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreContactPhoneRequest": {
+                "description": "Request DTO to update phone",
+                "properties": {
+                    "phone": {
+                        "type": "stryng",
+                        "example": "+380938499546"
+                    },
+                    "default": {
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreContactRequest": {
+                "description": "Request DTO to store contact",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Contact Name"
+                    },
+                    "phones": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "phone": {
+                                    "type": "stryng",
+                                    "example": "+380938499546"
+                                },
+                                "default": {
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "nullable": true
+                    },
+                    "emails": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "example@mail.com"
+                                },
+                                "default": {
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "nullable": true
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "example": "1",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "paginationInformation": {
+                "description": "pagination structure",
+                "properties": {
+                    "currentPage": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "from": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "to": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "perPage": {
+                        "type": "integer",
+                        "example": "15"
+                    },
+                    "total": {
+                        "type": "integer",
+                        "example": "150"
+                    }
+                },
+                "type": "object"
+            },
+            "ContactListResource": {
+                "description": "Contact list item structure",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Contact name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example@email.com",
+                        "nullable": true
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+380489544854",
+                        "nullable": true
+                    },
+                    "responsible": {
+                        "$ref": "#components/schemas/ResponsibleResource"
+                    }
+                },
+                "type": "object"
+            },
+            "EmailResource": {
+                "description": "Email collection",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example@email.com"
+                    },
+                    "default": {
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "PhoneResource": {
+                "description": "Phones collection",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+290489874038"
+                    },
+                    "default": {
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "ResponsibleResource": {
+                "description": "Responsible Resource",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Responsible Name"
+                    }
+                },
+                "type": "object"
+            },
+            "SectionResource": {
+                "description": "Section resource",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Section Name"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "ContactGetResource": {
+                "description": "Get contact`s data",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Contact Name"
+                                        },
+                                        "phones": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#components/schemas/PhoneResource"
+                                            }
+                                        },
+                                        "emails": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#components/schemas/EmailResource"
+                                            }
+                                        },
+                                        "responsible": {
+                                            "$ref": "#components/schemas/ResponsibleResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "ContactListCollection": {
+                "description": "Contact list structure",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ContactListResource"
+                                    }
+                                },
+                                "meta": {
+                                    "$ref": "#components/schemas/paginationInformation"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "EmailCollection": {
+                "description": "Return emails collection",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#components/schemas/EmailResource"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "PhoneCollection": {
+                "description": "Return phones collection",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#components/schemas/PhoneResource"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "ResidentialGetResource": {
+                "description": "Get residential`s data",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "data": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Residential Name"
+                                        },
+                                        "sections": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#components/schemas/SectionResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Contacts",
+            "description": "Operations with Contacts"
+        },
+        {
+            "name": "Residentials",
+            "description": "Operations with Residentials"
+        }
+    ]
+}
